@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://baa7elu1bvlju"]
+
+[ext_resource type="Texture2D" uid="uid://swrhv0roe2it" path="res://textures/texture_13.png" id="1_dgp04"]
+[ext_resource type="PackedScene" uid="uid://ddo2hsj4vseh2" path="res://PlayerCharacter.tscn" id="1_qigp5"]
+[ext_resource type="Texture2D" uid="uid://eoxddkwgvxjv" path="res://textures/skybox/panorama_image (2).png" id="3_j8aq7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vl4ys"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6ncd0"]
+material = SubResource("ShaderMaterial_vl4ys")
+size = Vector2(100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2lyr1"]
+albedo_texture = ExtResource("1_dgp04")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vppe"]
+albedo_texture = ExtResource("1_dgp04")
+uv1_triplanar = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gltbf"]
+panorama = ExtResource("3_j8aq7")
+
+[sub_resource type="Sky" id="Sky_mfe26"]
+sky_material = SubResource("PanoramaSkyMaterial_gltbf")
+
+[sub_resource type="Environment" id="Environment_nurqc"]
+background_mode = 2
+sky = SubResource("Sky_mfe26")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.7
+reflected_light_source = 2
+tonemap_mode = 2
+ssil_enabled = true
+sdfgi_use_occlusion = true
+
+[node name="TestingScene" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0102396, -0.0260932, 0.0036974)
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D"]
+mesh = SubResource("PlaneMesh_6ncd0")
+material = SubResource("StandardMaterial3D_2lyr1")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -10)
+size = Vector3(2, 1, 2)
+material = SubResource("StandardMaterial3D_3vppe")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.5, -3)
+size = Vector3(2, 1, 2)
+material = SubResource("StandardMaterial3D_3vppe")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.5, -7)
+size = Vector3(2, 1, 10)
+material = SubResource("StandardMaterial3D_3vppe")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0.5, -5)
+size = Vector3(2, 1, 2)
+material = SubResource("StandardMaterial3D_3vppe")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.5, -7)
+size = Vector3(2, 1, 2)
+material = SubResource("StandardMaterial3D_3vppe")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0.5, -9)
+size = Vector3(2, 1, 2)
+material = SubResource("StandardMaterial3D_3vppe")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.5, -11)
+size = Vector3(2, 1, 2)
+material = SubResource("StandardMaterial3D_3vppe")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -10)
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_3vppe")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -10)
+size = Vector3(2, 3, 2)
+material = SubResource("StandardMaterial3D_3vppe")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -10)
+size = Vector3(2, 4, 2)
+material = SubResource("StandardMaterial3D_3vppe")
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_qigp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nurqc")
